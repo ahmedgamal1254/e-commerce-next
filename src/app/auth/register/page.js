@@ -40,8 +40,10 @@ export default function Register() {
         headers: { "Content-Type": "application/json", Accept: "application/json" },
       });
 
-      localStorage.setItem("token_app", res.data.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.data.user));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("token_app", res.data.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.data.user));
+      }
 
       // Reset form
       setFormData({ name: "", email: "", password: "" });

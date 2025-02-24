@@ -19,8 +19,11 @@ export default function Login() {
 
       console.log(res)
 
-      localStorage.setItem("token_app", res.data.token);
-      localStorage.setItem("user", JSON.stringify(res.data.user));
+      if (typeof window !== "undefined") {
+        localStorage.setItem("token_app", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+      }
+
 
       Swal.fire({
         title: "Success",
