@@ -33,8 +33,7 @@ export default function ShopPage() {
       );
       const result = await response.json();
       // Adjust this if your API response structure is different
-      setProducts(result.data);
-      console.log(result.data)
+      setProducts(result.data.data);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
@@ -45,8 +44,6 @@ export default function ShopPage() {
     setSearchTerm(term);
     handlesearch(term);
   };
-
-  console.log(products)
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 p-8">
