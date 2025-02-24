@@ -13,13 +13,11 @@ const Navbar = () => {
   const [sidebarType, setSidebarType] = useState("cart"); // "cart" or "wishlist"
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Open sidebar and set type (cart or wishlist)
   const openSidebar = (type) => {
     setSidebarType(type);
     setIsSidebarOpen(true);
   };
 
-  // Close sidebar
   const closeSidebar = () => setIsSidebarOpen(false);
 
   return (
@@ -32,37 +30,6 @@ const Navbar = () => {
               <Link href="/">
                 <span className="text-xl font-bold text-gray-800 cursor-pointer">MyStore</span>
               </Link>
-            </div>
-
-            {/* Mobile Icons & Menu Button */}
-            <div className="flex items-center space-x-4 md:hidden">
-              {/* Wishlist Button */}
-              <button onClick={() => openSidebar("wishlist")} className="relative text-gray-800 hover:text-gray-600 focus:outline-none">
-                <FaHeart className="w-6 h-6" />
-                {wishlist.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">
-                    {wishlist.length}
-                  </span>
-                )}
-              </button>
-
-              {/* Cart Button */}
-              <button onClick={() => openSidebar("cart")} className="relative text-gray-800 hover:text-gray-600 focus:outline-none">
-                <FaShoppingCart className="w-6 h-6" />
-                {cart.length > 0 && (
-                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">
-                    {cart.length}
-                  </span>
-                )}
-              </button>
-
-              {/* Mobile Menu Button */}
-              <button
-                className="text-gray-800 hover:text-gray-600 focus:outline-none"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                <FaBars className="w-6 h-6" />
-              </button>
             </div>
 
             {/* Desktop Links */}
@@ -92,7 +59,41 @@ const Navbar = () => {
                 </Link>
               )}
             </div>
+
+            
+            {/* Icons & Menu Button (Visible on Both Desktop & Mobile) */}
+            <div className="flex items-center space-x-4">
+              {/* Wishlist Button */}
+              <button onClick={() => openSidebar("wishlist")} className="relative text-gray-800 hover:text-gray-600 focus:outline-none">
+                <FaHeart className="w-6 h-6" />
+                {wishlist.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">
+                    {wishlist.length}
+                  </span>
+                )}
+              </button>
+
+              {/* Cart Button */}
+              <button onClick={() => openSidebar("cart")} className="relative text-gray-800 hover:text-gray-600 focus:outline-none">
+                <FaShoppingCart className="w-6 h-6" />
+                {cart.length > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">
+                    {cart.length}
+                  </span>
+                )}
+              </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden text-gray-800 hover:text-gray-600 focus:outline-none "
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <FaBars className="w-6 h-6" />
+              </button>
+            </div>
           </div>
+
+          
 
           {/* Mobile Menu */}
           <div className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}>
