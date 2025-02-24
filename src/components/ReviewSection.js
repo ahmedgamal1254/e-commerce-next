@@ -71,8 +71,6 @@ const MySwiper = () => {
           </SwiperSlide>
         </Swiper>
         {/* Custom Navigation Buttons */}
-        <div className="swiper-button-next bg-white p-4 rounded-full shadow-md hover:bg-gray-100 transition-colors duration-300"></div>
-        <div className="swiper-button-prev bg-white p-4 rounded-full shadow-md hover:bg-gray-100 transition-colors duration-300"></div>
       </div>
     </div>
   );
