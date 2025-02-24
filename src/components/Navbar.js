@@ -1,7 +1,7 @@
 "use client";
 import { useState, useContext } from "react";
 import Link from "next/link";
-import { FaShoppingCart, FaHeart, FaTimes } from "react-icons/fa";
+import { FaShoppingCart, FaHeart, FaTimes, FaBars } from "react-icons/fa";
 import { CartContext } from "@/CartContext";
 import { WishlistContext } from "@/WishlistContext";
 
@@ -11,6 +11,7 @@ const Navbar = () => {
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [sidebarType, setSidebarType] = useState("cart"); // "cart" or "wishlist"
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Open sidebar and set type (cart or wishlist)
   const openSidebar = (type) => {
@@ -33,37 +34,8 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Links */}
-            <div className="hidden md:flex space-x-8">
-              <Link href="/">
-                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Home</span>
-              </Link>
-              <Link href="/shop">
-                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Shop</span>
-              </Link>
-              <Link href="/cart">
-                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Cart</span>
-              </Link>
-              <Link href="/about">
-                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">About</span>
-              </Link>
-              <Link href="/contact-us">
-                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">contact-us</span>
-              </Link>
-              {
-              typeof window !== "undefined" && localStorage.getItem("token_app") !== null ? (
-                <Link href="/my-account">
-                  <span className="text-gray-800 hover:text-gray-600 cursor-pointer">My Account</span>
-                </Link>
-              ) : (
-                <Link href="/auth/register">
-                  <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Register</span>
-                </Link>
-              )}
-            </div>
-
-            {/* Cart and Wishlist */}
-            <div className="flex items-center space-x-6">
+            {/* Mobile Icons & Menu Button */}
+            <div className="flex items-center space-x-4 md:hidden">
               {/* Wishlist Button */}
               <button onClick={() => openSidebar("wishlist")} className="relative text-gray-800 hover:text-gray-600 focus:outline-none">
                 <FaHeart className="w-6 h-6" />
@@ -83,6 +55,72 @@ const Navbar = () => {
                   </span>
                 )}
               </button>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="text-gray-800 hover:text-gray-600 focus:outline-none"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <FaBars className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Desktop Links */}
+            <div className="hidden md:flex space-x-8">
+              <Link href="/">
+                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Home</span>
+              </Link>
+              <Link href="/shop">
+                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Shop</span>
+              </Link>
+              <Link href="/cart">
+                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Cart</span>
+              </Link>
+              <Link href="/about">
+                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">About</span>
+              </Link>
+              <Link href="/contact-us">
+                <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Contact Us</span>
+              </Link>
+              {typeof window !== "undefined" && localStorage.getItem("token_app") !== null ? (
+                <Link href="/my-account">
+                  <span className="text-gray-800 hover:text-gray-600 cursor-pointer">My Account</span>
+                </Link>
+              ) : (
+                <Link href="/auth/register">
+                  <span className="text-gray-800 hover:text-gray-600 cursor-pointer">Register</span>
+                </Link>
+              )}
+            </div>
+          </div>
+
+          {/* Mobile Menu */}
+          <div className={`md:hidden ${isMobileMenuOpen ? "block" : "hidden"}`}>
+            <div className="flex flex-col space-y-4 pb-4">
+              <Link href="/">
+                <span className="block text-gray-800 hover:text-gray-600 cursor-pointer">Home</span>
+              </Link>
+              <Link href="/shop">
+                <span className="block text-gray-800 hover:text-gray-600 cursor-pointer">Shop</span>
+              </Link>
+              <Link href="/cart">
+                <span className="block text-gray-800 hover:text-gray-600 cursor-pointer">Cart</span>
+              </Link>
+              <Link href="/about">
+                <span className="block text-gray-800 hover:text-gray-600 cursor-pointer">About</span>
+              </Link>
+              <Link href="/contact-us">
+                <span className="block text-gray-800 hover:text-gray-600 cursor-pointer">Contact Us</span>
+              </Link>
+              {typeof window !== "undefined" && localStorage.getItem("token_app") !== null ? (
+                <Link href="/my-account">
+                  <span className="block text-gray-800 hover:text-gray-600 cursor-pointer">My Account</span>
+                </Link>
+              ) : (
+                <Link href="/auth/register">
+                  <span className="block text-gray-800 hover:text-gray-600 cursor-pointer">Register</span>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -104,7 +142,6 @@ const Navbar = () => {
 
         {/* Sidebar Content */}
         <div className="p-4 space-y-2 flex-1 overflow-y-auto">
-          {/* Cart Items */}
           {sidebarType === "cart" && cart.length === 0 && <p className="text-gray-600">Your cart is empty.</p>}
           {sidebarType === "cart" &&
             cart.map((item) => (
@@ -114,7 +151,6 @@ const Navbar = () => {
               </div>
             ))}
 
-          {/* Wishlist Items */}
           {sidebarType === "wishlist" && wishlist.length === 0 && <p className="text-gray-600">Your wishlist is empty.</p>}
           {sidebarType === "wishlist" &&
             wishlist.map((item) => (
