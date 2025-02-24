@@ -33,8 +33,8 @@ export default function ShopPage() {
       );
       const result = await response.json();
       // Adjust this if your API response structure is different
-      setProducts(result.data.data);
-      console.log(result.data.data)
+      setProducts(result.data);
+      console.log(result.data)
     } catch (error) {
       console.error("Error fetching products:", error);
     }

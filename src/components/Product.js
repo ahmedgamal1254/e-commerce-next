@@ -105,7 +105,7 @@ const ProductCard = ({ product }) => {
             {gallery.map((image, index) => (
               <SwiperSlide key={index}>
                 <img
-                  src={"https://ecommerce.ahmedgamaldev.com/public/app/"+image.image_url}
+                  src={image}
                   alt={`${title} - Image ${index + 1}`}
                   className="hover:scale-105 transition-transform duration-300"
                 />

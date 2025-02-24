@@ -1,8 +1,6 @@
 "use client"
 import ProductCard from "./Product";
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import  "../env.js";
 
 export default function Products() {
     const [products, setProducts] = useState([]);
@@ -12,7 +10,7 @@ export default function Products() {
           try {
             const response = await fetch("https://ecommerce.ahmedgamaldev.com/api/products?limit=8&page=1");
             const result = await response.json();
-            setProducts(result.data);
+            setProducts(result.data.data);
           } catch (error) {
             console.error("Error fetching products:", error);
           }
@@ -21,12 +19,11 @@ export default function Products() {
         fetchProducts();
     }, []);
     
-    console.log(products)
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-center mb-8">Our Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {products != null ?products.map((product) => (
+        {products != null && products.length > 0 ?products.map((product) => (
           <ProductCard key={product.id} product={product} />
         )):(
             <p></p>
