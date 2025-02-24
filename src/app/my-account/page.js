@@ -17,10 +17,13 @@ const MyAccount = () => {
     const fetchProfile = async () => {
       try {
         setLoadingUser(true);
-        const token = localStorage.getItem("token_app");
-  
-        if (!token) {
-          router.push("/auth/login")          
+
+        if (typeof window !== "undefined") {
+          const token = localStorage.getItem("token_app");
+    
+          if (!token) {
+            router.push("/auth/login")          
+          }
         }
   
         const response = await axios.get("https://ecommerce.ahmedgamaldev.com/api/profile", {
