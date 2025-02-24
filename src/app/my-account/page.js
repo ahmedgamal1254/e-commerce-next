@@ -20,8 +20,7 @@ const MyAccount = () => {
         const token = localStorage.getItem("token_app");
   
         if (!token) {
-          console.error("No token found!");
-          return;
+          router.push("/auth/login")          
         }
   
         const response = await axios.get("https://ecommerce.ahmedgamaldev.com/api/profile", {

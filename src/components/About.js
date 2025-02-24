@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FaShoppingBasket } from "react-icons/fa";
 
 const FeaturesAndAbout = () => {
@@ -38,10 +39,10 @@ const FeaturesAndAbout = () => {
             <p className="text-gray-600 mt-2">
               Our services include fast delivery, easy returns, and 24/7 customer support. Join us today and enjoy an exceptional shopping journey!
             </p>
-            <button className="button-group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            <Link href="/shop" className="button-group text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
               <FaShoppingBasket className="w-5 h-5" />
               <span>shop now</span>
-            </button>
+            </Link>
           </div>
           <div className="md:w-1/2">
             <img

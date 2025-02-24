@@ -39,3 +39,15 @@
   width: 100%;
   object-fit: cover;
 }
+
+.reviews {
+  width: 90%;
+  height: 25vh;
+  margin: auto;
+  margin-top: 64px;
+  margin-bottom: 80px;
+}
+
+.contact_us{
+  margin-top: 150px;
+}

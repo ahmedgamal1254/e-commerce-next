@@ -46,28 +46,39 @@ const ProductCard = ({ product }) => {
   };
 
   const handleaddtocart = async (product_id) => {
-    await axios.post("https://ecommerce.ahmedgamaldev.com/api/cart/store", {
-      "product_id": product_id,
-      "quantity": 1
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem("token_app")}`
-      },
-    });
-
-    fetchCart();
-    Swal.fire({
-      title: 'Success',
-      text: 'تم اضافة المنتج بنجاح',
-      icon: 'success',
-      timer: 1500,
-      confirmButtonText: 'إغلاق'
-    });
+    if(localStorage.getItem("token_app") != null){
+      await axios.post("https://ecommerce.ahmedgamaldev.com/api/cart/store", {
+        "product_id": product_id,
+        "quantity": 1
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem("token_app")}`
+        },
+      });
+  
+      fetchCart();
+      Swal.fire({
+        title: 'Success',
+        text: 'تم اضافة المنتج بنجاح',
+        icon: 'success',
+        timer: 1500,
+        confirmButtonText: 'إغلاق'
+      });
+    }else{
+      Swal.fire({
+        title: 'error',
+        text: 'أنت عير مسجل دخول بعد',
+        icon: 'error',
+        timer: 1500,
+        confirmButtonText: 'إغلاق'
+      });
+    }
   };
 
   const handleaddtowishlist = async (product_id) => {
+   if(localStorage.getItem("token_app") != null){
     await axios.post("https://ecommerce.ahmedgamaldev.com/api/wishlist/store", {
       "product_id": product_id,
     }, {
@@ -86,6 +97,15 @@ const ProductCard = ({ product }) => {
       timer: 1500,
       confirmButtonText: 'إغلاق'
     });
+   }else{
+    Swal.fire({
+      title: 'error',
+      text: 'أنت عير مسجل دخول بعد',
+      icon: 'error',
+      timer: 1500,
+      confirmButtonText: 'إغلاق'
+    });
+  }
   };
 
   const { id, title, price, salePrice, gallery } = product;

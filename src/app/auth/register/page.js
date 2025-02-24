@@ -31,6 +31,12 @@ export default function Register() {
     return Object.keys(newErrors).length === 0;
   };
 
+  const token = localStorage.getItem("token_app");
+
+  if (token) {
+    router.push("/my-account")          
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;

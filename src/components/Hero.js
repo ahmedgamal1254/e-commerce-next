@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const HeroSection = () => {
     return (
       <section className="relative bg-cover bg-center h-[92vh] flex items-center justify-center" style={{ backgroundImage: "url('hero3.webp')"}}>
@@ -10,9 +12,9 @@ const HeroSection = () => {
           <p className="text-xl mb-8">
             Discover the best products at unbeatable prices. Shop now and enjoy a seamless shopping experience!
           </p>
-          <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+          <Link href="/shop" className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300">
             Shop Now
-          </button>
+          </Link>
         </div>
       </section>
     );

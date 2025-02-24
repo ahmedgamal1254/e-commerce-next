@@ -10,6 +10,12 @@ export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
 
+  const token = localStorage.getItem("token_app");
+  
+  if (token) {
+    router.push("/my-account")          
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

@@ -1,5 +1,4 @@
 import FeaturesAndAbout from "@/components/About";
-import ContactUs from "@/components/contact";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/Hero";
 import Navbar from "@/components/Navbar";
@@ -12,12 +11,9 @@ import Image from "next/image";
 export default function Home() {
   return (
     <>
-    <HeroSection />
     <FeaturesAndAbout />
-    <Products />
     <PromoOffer />
     <ReviewsSection />
-    <ContactUs />
     </>
   );
 }

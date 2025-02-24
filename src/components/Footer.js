@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Footer = () => {
     return (
       <footer className="bg-gray-900 text-white py-10 mt-10">
@@ -16,18 +18,20 @@ const Footer = () => {
             <div>
               <h2 className="text-xl font-semibold mb-4">Quick Links</h2>
               <ul className="text-gray-400 space-y-2">
-                <li><a href="/shop" className="hover:text-gray-200">Shop</a></li>
-                <li><a href="/about" className="hover:text-gray-200">About</a></li>
-                <li><a href="/contact" className="hover:text-gray-200">Contact</a></li>
-                <li><a href="/faq" className="hover:text-gray-200">FAQs</a></li>
+                <li><Link href="/shop" className="hover:text-gray-200">Shop</Link></li>
+                <li><Link href="/about" className="hover:text-gray-200">About</Link></li>
+                <li><Link href="/contact-us" className="hover:text-gray-200">Contact</Link></li>
+                <li><Link href="/auth/register" className="hover:text-gray-200">Register</Link></li>
+                <li><Link href="/auth/login" className="hover:text-gray-200">Login</Link></li>
+                <li><Link href="/my-account" className="hover:text-gray-200">My-Account</Link></li>
               </ul>
             </div>
   
             {/* 📞 Contact Section */}
             <div>
               <h2 className="text-xl font-semibold mb-4">Contact Us</h2>
-              <p className="text-gray-400">Email: support@store.com</p>
-              <p className="text-gray-400">Phone: +1 234 567 890</p>
+              <p className="text-gray-400">Email: info@ahmedgamaldev.com</p>
+              <p className="text-gray-400">Phone: +20 01091536978</p>
               
               {/* Social Media Icons */}
               <div className="flex space-x-4 mt-4">
